@@ -1,0 +1,14 @@
+flowchart LR
+    subgraph Monolito[Monolito DDD]
+        Catalog[Catalog]
+        Inventory[Inventory]
+        Orders[Orders]
+        Payments[Payments]
+        Shipping[Shipping]
+
+        Orders -->|Consulta informações comerciais dos produtos| Catalog
+        Orders -->|Solicita reservas e liberações de estoque| Inventory
+        Orders -->|Solicita uma entrega quando o pedido estiver pronto| Shipping
+        Payments -->|Comunica a confirmação de pagamento por contrato público| Orders
+        Payments -->|Integra com o provedor externo| Stripe
+    end
